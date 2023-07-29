@@ -1,1 +1,21 @@
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Random Number
+        </title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <p id="display"></p>
+        <button onclick="main()">Random Number</button>
+        <script>
+            number = prompt("Enter Number");
+            function main()
+            {
+                random_number = Math.floor(Math.random() * number);
+                document.getElementById("display").innerHTML = random_number;
+            }
+        </script>
+    </body>
+</html>
