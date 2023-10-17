@@ -12,7 +12,7 @@ body {
 .header {
   padding: 80px;
   text-align: center;
-  background-image: url:('header.jpg');
+  background-image: url:("https://computerware.github.io/header.jpg");
   color: white;
 }
 
