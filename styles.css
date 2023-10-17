@@ -12,7 +12,7 @@ body {
 .header {
   padding: 80px;
   text-align: center;
-  background-image: url:('https://raw.githubusercontent.com/yuchiu/Default-Material-Dark-Theme/master/images/demo.png');
+  background-image: url:('header.jpg');
   color: white;
 }
 
