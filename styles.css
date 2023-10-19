@@ -12,7 +12,7 @@ body {
 .header {
   padding: 80px;
   text-align: center;
-  background: ("https://computerwareassets.surge.sh/header.jpg");
+  background-color: #0377fc;
   color: white;
 }
 
