@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evan Sergievich | Official Site</title>
+  <!-- Premium Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #ffffff;
+      --secondary: #00f2ff;
+      --bg-dark: #050505;
+      --text-gray: #a0a0a0;
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Cinematic Background */
+    .bg-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(5, 5, 5, 0.7), rgba(5, 5, 5, 0.9)),
+      url('https://images.unsplash.com/photo-1511735111819-9a3f7709049c?auto=format&fit=crop&q=80&w=2000');
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+    }
+
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 8%;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(5, 5, 5, 0.5);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .logo {
+      font-family: 'Syncopate', sans-serif;
+      font-weight: 700;
+      letter-spacing: 4px;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+
+    .logo span { color: var(--secondary); }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-gray);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: 0.3s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 10%;
+    }
+
+    .hero h1 {
+      font-family: 'Syncopate', sans-serif;
+      font-size: clamp(2.5rem, 10vw, 6rem);
+      letter-spacing: 15px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: fadeInDown 1.5s ease-out;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      letter-spacing: 5px;
+      color: var(--text-gray);
+      text-transform: uppercase;
+      animation: fadeInUp 2s ease-out;
+    }
+
+    /* Sections General */
+    section {
+      padding: 100px 10%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-family: 'Syncopate', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 8px;
+      margin-bottom: 50px;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--secondary);
+    }
+
+    /* Music Grid */
+    .music-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .spotify-embed {
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+
+    /* Bio Text */
+    .bio-text {
+      font-size: 1.1rem;
+      color: var(--text-gray);
+      line-height: 2;
+      max-width: 800px;
+    }
+
+    /* Contact Glass Card */
+    .contact-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      padding: 80px 40px;
+      text-align: center;
+      border-radius: 8px;
+      margin-top: 50px;
+    }
+
+    .email-btn {
+      font-family: 'Syncopate', sans-serif;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.5rem;
+      display: inline-block;
+      margin-top: 30px;
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 5px;
+      transition: 0.4s;
+    }
+
+    .email-btn:hover {
+      letter-spacing: 3px;
+      color: var(--secondary);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: 1.2s all ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      padding: 50px;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #444;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .music-container { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+      .hero h1 { letter-spacing: 5px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-fixed"></div>
+
+<nav>
+  <div class="logo">EVAN <span>SERGIEVICH</span></div>
+  <ul>
+    <li><a href="#music">My Music</a></li>
+    <li><a href="#bio">My Story</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <p>My Latest Release</p>
+    <h1>Evan Sergievich</h1>
+  </section>
+
+  <!-- Music -->
+  <section id="music" class="reveal">
+    <h2>New Music</h2>
+    <div class="music-container">
+      <div class="spotify-embed">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/29D68SAgwzb9HXLrUk56N1?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+      <div class="music-desc">
+        <h3 style="font-family: 'Syncopate'; margin-bottom: 20px;">The Inspiration</h3>
+        <p class="bio-text">I built this EP to explore the intersection of ambient textures and heavy electronic rhythms. For me, this project is a raw, technical journey through the modern soundscapes that define our current era.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bio -->
+  <section id="bio" class="reveal">
+    <h2>About Me</h2>
+    <div class="bio-text">
+      <p>I am a producer and multi-instrumentalist based in South Carolina. My work is driven by a desire to combine technical engineering concepts with organic musical composition. I strive to create immersive audio experiences that challenge traditional genre boundaries.</p>
+      <br>
+      <p>With a focus on precision and atmosphere, I treat my music as a soundtrack to the digital age—complex, reactive, and deeply personal. Whether I'm in the studio or experimenting with new gear, my goal is always to push the frontier of what sound can do.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="reveal">
+    <div class="contact-card">
+      <h2>Get In Touch</h2>
+      <p style="letter-spacing: 2px; color: var(--text-gray);">FOR BOOKING, SYNC, OR COLLABORATIONS</p>
+      <a href="mailto:evansergi85@gmail.com" class="email-btn">evansergi85@gmail.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 EVAN SERGIEVICH. CRAFTED FOR THE FRONTIER.</p>
+</footer>
+
+<script>
+  const observerOptions = {
+    threshold: 0.15
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach(section => {
+    observer.observe(section);
+  });
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.reveal').forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        section.classList.add('active');
+      }
+    });
+  });
+</script>
+</body>
+</html>
