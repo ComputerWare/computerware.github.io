@@ -3,316 +3,486 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Evan Sergievich | Official Site</title>
-  <!-- Premium Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-
+  <title>EVAN | Official Music Profile</title>
   <style>
+    /* 1. CSS VARIABLES & SYSTEM RESET */
     :root {
-      --accent: #ffffff;
-      --secondary: #00f2ff;
-      --bg-dark: #050505;
-      --text-gray: #a0a0a0;
-      --glass: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.1);
+      --bg-gradient: linear-gradient(135deg, #090d0a 0%, #111612 100%);
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --glass-glow: rgba(57, 255, 20, 0.15);
+      --accent-neon: #39ff14; /* Sapo accent green */
+      --accent-muted: #24aa0e;
+      --text-main: #ffffff;
+      --text-muted: #a2b0a6;
+      --font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
     body {
-      background-color: var(--bg-dark);
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-main);
+      font-family: var(--font-stack);
+      min-height: 100vh;
       overflow-x: hidden;
       line-height: 1.6;
     }
 
-    /* Cinematic Background */
-    .bg-fixed {
+    /* 2. BACKGROUND AMBIENT ORBS */
+    .ambient-glow {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(rgba(5, 5, 5, 0.7), rgba(5, 5, 5, 0.9)),
-      url('https://images.unsplash.com/photo-1511735111819-9a3f7709049c?auto=format&fit=crop&q=80&w=2000');
-      background-size: cover;
-      background-position: center;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--glass-glow) 0%, rgba(0,0,0,0) 70%);
+      top: -100px;
+      right: -100px;
       z-index: -1;
+      pointer-events: none;
     }
 
-    /* Navigation */
-    nav {
+    .ambient-glow-2 {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(36, 170, 14, 0.08) 0%, rgba(0,0,0,0) 70%);
+      bottom: -150px;
+      left: -150px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* 3. GLASSMORPHISM UTILITIES */
+    .glass-panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    /* 4. LAYOUT CONTAINERS */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 8%;
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(5, 5, 5, 0.5);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid var(--glass-border);
+      padding: 2rem 0;
+      margin-bottom: 3rem;
     }
 
     .logo {
-      font-family: 'Syncopate', sans-serif;
-      font-weight: 700;
+      font-size: 1.8rem;
+      font-weight: 900;
       letter-spacing: 4px;
-      font-size: 1.1rem;
       text-transform: uppercase;
+      color: var(--text-main);
     }
 
-    .logo span { color: var(--secondary); }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 2rem;
-    }
-
-    nav a {
+    .nav-links a {
+      color: var(--text-muted);
       text-decoration: none;
-      color: var(--text-gray);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      transition: 0.3s;
+      margin-left: 2rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
     }
 
-    nav a:hover { color: var(--accent); }
+    .nav-links a:hover {
+      color: var(--accent-neon);
+    }
 
-    /* Hero Section */
-    .hero {
-      height: 100vh;
+    section {
+      margin-bottom: 5rem;
+    }
+
+    /* 5. HERO / SPOTLIGHT (SAPO EP) */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(57, 255, 20, 0.1);
+      border: 1px solid var(--accent-neon);
+      color: var(--accent-neon);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .hero-text p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      background: var(--text-main);
+      color: #000;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(57, 255, 20, 0.2);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      margin-left: 1rem;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--text-muted);
+      box-shadow: none;
+    }
+
+    /* Fake vinyl/artwork stack graphic */
+    .artwork-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .artwork-frame {
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 380px;
+      background: linear-gradient(45deg, #1e2920, #0c100d);
+      border-radius: 16px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0 10%;
-    }
-
-    .hero h1 {
-      font-family: 'Syncopate', sans-serif;
-      font-size: clamp(2.5rem, 10vw, 6rem);
-      letter-spacing: 15px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      animation: fadeInDown 1.5s ease-out;
-    }
-
-    .hero p {
-      font-size: 1rem;
-      letter-spacing: 5px;
-      color: var(--text-gray);
-      text-transform: uppercase;
-      animation: fadeInUp 2s ease-out;
-    }
-
-    /* Sections General */
-    section {
-      padding: 100px 10%;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    h2 {
-      font-family: 'Syncopate', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: 8px;
-      margin-bottom: 50px;
-      text-transform: uppercase;
+      padding: 2rem;
       position: relative;
+      overflow: hidden;
     }
 
-    h2::after {
+    /* Decorative green blur behind the artwork */
+    .artwork-frame::before {
       content: '';
       position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 50px;
-      height: 2px;
-      background: var(--secondary);
+      width: 150px;
+      height: 150px;
+      background: var(--accent-neon);
+      filter: blur(80px);
+      opacity: 0.3;
+      z-index: 0;
     }
 
-    /* Music Grid */
-    .music-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      align-items: center;
+    .artwork-title {
+      font-size: 4rem;
+      font-weight: 900;
+      letter-spacing: 6px;
+      z-index: 1;
+      color: var(--text-main);
+      text-shadow: 0 0 30px rgba(57, 255, 20, 0.4);
     }
 
-    .spotify-embed {
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--glass-border);
-    }
-
-    /* Bio Text */
-    .bio-text {
-      font-size: 1.1rem;
-      color: var(--text-gray);
-      line-height: 2;
-      max-width: 800px;
-    }
-
-    /* Contact Glass Card */
-    .contact-card {
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      backdrop-filter: blur(20px);
-      padding: 80px 40px;
-      text-align: center;
-      border-radius: 8px;
-      margin-top: 50px;
-    }
-
-    .email-btn {
-      font-family: 'Syncopate', sans-serif;
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 1.5rem;
-      display: inline-block;
-      margin-top: 30px;
-      border-bottom: 2px solid var(--secondary);
-      padding-bottom: 5px;
-      transition: 0.4s;
-    }
-
-    .email-btn:hover {
-      letter-spacing: 3px;
-      color: var(--secondary);
-    }
-
-    /* Animations */
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: 1.2s all ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    footer {
-      padding: 50px;
-      text-align: center;
-      font-size: 0.7rem;
-      color: #444;
-      letter-spacing: 2px;
+    .artwork-sub {
+      font-size: 0.8rem;
       text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--accent-neon);
+      z-index: 1;
+      margin-top: 0.5rem;
     }
 
+    /* 6. EMBED SECTION */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title::after {
+      content: '';
+      flex-grow: 1;
+      height: 1px;
+      background: var(--glass-border);
+    }
+
+    /* 7. DISC RELEASES LIST */
+    .discog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .discog-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 1.5rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.01);
+      border: 1px solid rgba(255,255,255,0.03);
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .discog-item:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(57, 255, 20, 0.2);
+    }
+
+    .track-meta h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .track-meta p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .track-type {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.05);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .discog-item.active .track-type {
+      color: var(--accent-neon);
+      background: rgba(57, 255, 20, 0.1);
+    }
+
+    /* 8. BIO SECTION */
+    .bio-content p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* 9. FOOTER / CONTACT */
+    footer {
+      text-align: center;
+      padding: 4rem 0 2rem;
+      border-top: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      margin: 0 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-neon);
+    }
+
+    /* 10. RESPONSIVE DESIGN */
     @media (max-width: 768px) {
-      .music-container { grid-template-columns: 1fr; }
-      nav ul { display: none; }
-      .hero h1 { letter-spacing: 5px; }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+      .artwork-wrapper {
+        order: -1; /* Puts album cover on top on mobile screens */
+      }
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+      header {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .nav-links a {
+        margin: 0 1rem;
+      }
+      .btn-secondary {
+        margin-left: 0;
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="bg-fixed"></div>
+  <!-- Ambient Glow Effects -->
+  <div class="ambient-glow"></div>
+  <div class="ambient-glow-2"></div>
 
-<nav>
-  <div class="logo">EVAN <span>SERGIEVICH</span></div>
-  <ul>
-    <li><a href="#music">My Music</a></li>
-    <li><a href="#bio">My Story</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <div class="container">
+    
+    <!-- HEADER NAV -->
+    <header>
+      <div class="logo">EVAN</div>
+      <nav class="nav-links">
+        <a href="#music">Music</a>
+        <a href="#about">About</a>
+        <a href="#contact">Connect</a>
+      </nav>
+    </header>
 
-<main>
-  <!-- Hero -->
-  <section class="hero">
-    <p>My Latest Release</p>
-    <h1>Evan Sergievich</h1>
-  </section>
+    <main>
+      
+      <!-- HERO / SPOTLIGHT SECTION -->
+      <section class="hero-grid">
+        <div class="hero-text">
+          <span class="badge">Latest Release</span>
+          <h1>SAPO EP</h1>
+          <p>
+            An energetic, experimental drop pushing industrial and modern electronic textures forward. 
+            A heavy, production-focused collaborative project featuring raw sound design and relentless beats.
+          </p>
+          <div class="hero-buttons">
+            <a href="#music" class="btn">Listen Now</a>
+            <a href="#about" class="btn btn-secondary">Read Bio</a>
+          </div>
+        </div>
+        
+        <div class="artwork-wrapper">
+          <!-- Dynamic generated placeholder representing the SAPO visual vibe -->
+          <div class="artwork-frame">
+            <div class="artwork-title">SAPO</div>
+            <div class="artwork-sub">The EP • Out Now</div>
+          </div>
+        </div>
+      </section>
 
-  <!-- Music -->
-  <section id="music" class="reveal">
-    <h2>New Music</h2>
-    <div class="music-container">
-      <div class="spotify-embed">
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/29D68SAgwzb9HXLrUk56N1?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <!-- AUDIO INTEGRATION / STREAMING PLAYER -->
+      <section id="music">
+        <h2 class="section-title">Stream</h2>
+        <div class="glass-panel" style="padding: 1rem;">
+          <!-- Official Spotify Web Player Embed Widget for Sapo EP -->
+          <iframe 
+            src="https://open.spotify.com/embed/album/62fBYofKL5PfW4jjircaod?utm_source=generator&theme=0" 
+            width="100%" 
+            height="352" 
+            frameBorder="0" 
+            allowfullscreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy"
+            style="border-radius: 12px; display: block;">
+          </iframe>
+        </div>
+      </section>
+
+      <!-- DISCOGRAPHY TIMELINE INDEX -->
+      <section>
+        <h2 class="section-title">Discography</h2>
+        <div class="discog-list">
+          
+          <div class="discog-item active">
+            <div class="track-meta">
+              <h4>Sapo</h4>
+              <p>2026 • 5 tracks (Collaborative EP)</p>
+            </div>
+            <span class="track-type">Current EP</span>
+          </div>
+
+          <div class="discog-item">
+            <div class="track-meta">
+              <h4>BEGINNINGS</h4>
+              <p>2026 • Album</p>
+            </div>
+            <span class="track-type">LP</span>
+          </div>
+
+          <div class="discog-item">
+            <div class="track-meta">
+              <h4>Bananas in Mexico</h4>
+              <p>Single</p>
+            </div>
+            <span class="track-type">Single</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- BIOGRAPHY SECTION -->
+      <section id="about" class="glass-panel">
+        <h2 class="section-title" style="margin-top: 0;">The Project</h2>
+        <div class="bio-content">
+          <p>
+            EVAN is an independent multi-instrumentalist and music producer working out of South Carolina. Blending elements across alternative soundscapes, lo-fi melodic arrangements, and bass-heavy industrial electronics, the project represents a refusal to stay locked in a single genre lane.
+          </p>
+          <p>
+            From the sunny, surf-tinged hooks of early singles to the aggressive synth layers and hard-hitting sample flips found on the 2026 <em>Sapo</em> EP, everything is built from scratch with a heavy focus on production details and distinctive audio textures.
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER / CONNECT -->
+    <footer id="contact">
+      <div class="footer-links">
+        <a href="https://open.spotify.com/album/62fBYofKL5PfW4jjircaod" target="_blank">Spotify</a>
+        <a href="#">BandLab</a>
+        <a href="#">Contact</a>
       </div>
-      <div class="music-desc">
-        <h3 style="font-family: 'Syncopate'; margin-bottom: 20px;">The Inspiration</h3>
-        <p class="bio-text">I built this EP to explore the intersection of ambient textures and heavy electronic rhythms. For me, this project is a raw, technical journey through the modern soundscapes that define our current era.</p>
-      </div>
-    </div>
-  </section>
+      <p>&copy; 2026 EVAN. All rights reserved.</p>
+    </footer>
 
-  <!-- Bio -->
-  <section id="bio" class="reveal">
-    <h2>About Me</h2>
-    <div class="bio-text">
-      <p>I am a producer and multi-instrumentalist based in South Carolina. My work is driven by a desire to combine technical engineering concepts with organic musical composition. I strive to create immersive audio experiences that challenge traditional genre boundaries.</p>
-      <br>
-      <p>With a focus on precision and atmosphere, I treat my music as a soundtrack to the digital age—complex, reactive, and deeply personal. Whether I'm in the studio or experimenting with new gear, my goal is always to push the frontier of what sound can do.</p>
-    </div>
-  </section>
+  </div>
 
-  <!-- Contact -->
-  <section id="contact" class="reveal">
-    <div class="contact-card">
-      <h2>Get In Touch</h2>
-      <p style="letter-spacing: 2px; color: var(--text-gray);">FOR BOOKING, SYNC, OR COLLABORATIONS</p>
-      <a href="mailto:evansergi85@gmail.com" class="email-btn">evansergi85@gmail.com</a>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <p>&copy; 2026 EVAN SERGIEVICH. CRAFTED FOR THE FRONTIER.</p>
-</footer>
-
-<script>
-  const observerOptions = {
-    threshold: 0.15
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('.reveal').forEach(section => {
-    observer.observe(section);
-  });
-
-  window.addEventListener('load', () => {
-    document.querySelectorAll('.reveal').forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top < window.innerHeight) {
-        section.classList.add('active');
-      }
-    });
-  });
-</script>
 </body>
 </html>
